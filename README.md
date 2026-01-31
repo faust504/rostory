@@ -29,7 +29,6 @@ Director:PlaySequence({
 ## Documentation
 
 - 🚀 [Quick Start Guide](docs/QUICKSTART.md) - Step-by-step setup instructions
-- 📖 [Director's Guide](docs/DIRECTORS_GUIDE.md) - Deep dive into story creation
 - 🌐 [Full API Documentation](https://faust504.github.io/rostory/) - Complete interactive documentation (index.html)
 
 ## Project Structure
