@@ -246,34 +246,34 @@
 
 <body>
     <nav class="sidebar">
-        <a href="#" class="logo">StoryEngine UwU</a>
+        <a href="#" class="logo">StoryEngine</a>
 
         <div class="nav-group">
-            <div class="nav-label">Intwoduwuction</div>
-            <a href="#welcome" class="nav-link">Welcwome</a>
-            <a href="#quickstart" class="nav-link">Quick Stawt >///<< /a>
+            <div class="nav-label">Introduction</div>
+            <a href="#welcome" class="nav-link">Welcome</a>
+            <a href="#quickstart" class="nav-link">Quick Start</a>
         </div>
 
         <div class="nav-group">
-            <div class="nav-label">Strwucture</div>
-            <a href="#chapter" class="nav-link">Chapter Moduwule</a>
+            <div class="nav-label">Structure</div>
+            <a href="#chapter" class="nav-link">Chapter Module</a>
         </div>
 
         <div class="nav-group">
-            <div class="nav-label">Action Libwary</div>
-            <a href="#actions-core" class="nav-link">Cowe Actions</a>
-            <a href="#actions-audio" class="nav-link">Audio UwU</a>
-            <a href="#actions-visuals" class="nav-link">Visuawls</a>
+            <div class="nav-label">Action Library</div>
+            <a href="#actions-core" class="nav-link">Core Actions</a>
+            <a href="#actions-audio" class="nav-link">Audio</a>
+            <a href="#actions-visuals" class="nav-link">Visuals</a>
             <a href="#actions-gameplay" class="nav-link">Gameplay</a>
             <a href="#actions-animation" class="nav-link">Animations</a>
-            <a href="#actions-camera" class="nav-link">Camewa</a>
+            <a href="#actions-camera" class="nav-link">Camera</a>
             <a href="#actions-tweening" class="nav-link">Tweening</a>
         </div>
     </nav>
 
     <main class="main">
         <section id="welcome">
-            <h1>Story Engine Documentation <span class="badge uwu">v1.0.0</span></h1>
+            <h1>Story Engine Documentation <span class="badge uwu">v1.0.0 uwu</span></h1>
             <p>
                 Hewwo! Welcwome to the officiwal documentation for the Story Engine.
                 This fwamework is designed to make creating cutscenes and linear stories supew easy and powewful! uwu
@@ -281,17 +281,16 @@
             <p>
                 Pwease wead through the sections to undewstand how to use the Directow and Actions! >w< </p>
                     <p>
-                        All actions support a built-in SKIP feature (press 'P') fow easy debugging!
+                        All actions support a built-in SKIP feature (press 'P') for easy debugging!
                     </p>
         </section>
 
         <section id="quickstart">
-            <h2>Quick Start >///<< /h2>
-                    <p>Get up and wunning fastew than a heawtbeat! To start using the Story Engine, you'll need to
-                        define a Chaptew and some Scenes.</p>
+            <h2>Quick Start</h2>
+            <p>To start using the Story Engine, you'll need to define a Chapter and some Scenes.</p>
 
-                    <h3>1. Cweate a Chaptew</h3>
-                    <pre><code class="language-lua">local Chapter = require(game.ReplicatedStorage.Story.Chapter)
+            <h3>1. Create a Chapter</h3>
+            <pre><code class="language-lua">local Chapter = require(game.ReplicatedStorage.Story.Chapter)
 local Actions = require(game.ReplicatedStorage.Story.Actions)
 
 local MyChapter = Chapter.new({
@@ -303,31 +302,31 @@ local MyChapter = Chapter.new({
     }
 })</code></pre>
 
-                    <h3>2. Define a Scene</h3>
-                    <pre><code class="language-lua">Chapter.scene("intro", "Intro Sequence", {
+            <h3>2. Define a Scene</h3>
+            <pre><code class="language-lua">Chapter.scene("intro", "Intro Sequence", {
     Actions.FadeOut(0),
     Actions.Wait(1),
     Actions.PlaySound("rbxassetid://123456"),
     Actions.FadeIn(2),
     Actions.Dialogue("Welcome to the game!", 3),
-    Actions.WalkTo(workspace.TargetPart)
+    Actions.TeleportPlayer(workspace.TargetPart.Position)
 })</code></pre>
 
-                    <h3>3. Pway it!</h3>
-                    <pre><code class="language-lua">local Director = require(game.ReplicatedStorage.Story.Director)
+            <h3>3. Play it!</h3>
+            <pre><code class="language-lua">local Director = require(game.ReplicatedStorage.Story.Director)
 Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
         </section>
 
         <section id="chapter">
             <h2>Chapter Module</h2>
-            <p>The <code>Chapter</code> moduwule hewps you owganize youw stowies into manageabwe chunks.</p>
+            <p>The <code>Chapter</code> module helps you organize your stories into manageable chunks.</p>
 
             <div class="api-item">
                 <div class="api-header">
                     <span class="api-name">Chapter.new</span>
                     <span class="api-sig">(definition)</span>
                 </div>
-                <p>Registers and cweates a new Chaptew object.</p>
+                <p>Registers and creates a new Chapter object.</p>
                 <table class="param-table">
                     <tr>
                         <th>Parameter</th>
@@ -347,7 +346,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Chapter.scene</span>
                     <span class="api-sig">(id, name, actions)</span>
                 </div>
-                <p>Hewper function to cweate a scene definition tabwe.</p>
+                <p>Helper function to create a scene definition table.</p>
             </div>
 
             <div class="api-item">
@@ -355,20 +354,20 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Chapter.getScene</span>
                     <span class="api-sig">(chapterId, sceneId)</span>
                 </div>
-                <p>Wetwieves a specific scene fwom a registewed chaptew.</p>
+                <p>Retrieves a specific scene from a registered chapter.</p>
             </div>
         </section>
 
         <section id="actions-core">
             <h2>Core Actions</h2>
-            <p>Fundamentaw bwilding bwocks fow youw stowy.</p>
+            <p>Fundamental building blocks for your story.</p>
 
             <div class="api-item">
                 <div class="api-header">
                     <span class="api-name">Actions.Wait</span>
                     <span class="api-sig">(seconds)</span>
                 </div>
-                <p>Pauses execution fow a set time (skippable).</p>
+                <p>Pauses execution for a set time (skippable).</p>
             </div>
 
             <div class="api-item">
@@ -376,7 +375,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.Dialogue</span>
                     <span class="api-sig">(text, duration?, color?, font?, textSize?)</span>
                 </div>
-                <p>Dispways text on scween with a typewwiter effect.</p>
+                <p>Displays text on screen with a typewriter effect.</p>
                 <table class="param-table">
                     <tr>
                         <th>Parameter</th>
@@ -386,22 +385,22 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <tr>
                         <td class="param-name">text</td>
                         <td>string</td>
-                        <td>The text to dispway uwu</td>
+                        <td>The text to display.</td>
                     </tr>
                     <tr>
                         <td class="param-name">duration</td>
                         <td>number</td>
-                        <td>Time to stay on screen after typing</td>
+                        <td>Time to stay on screen after typing.</td>
                     </tr>
                     <tr>
                         <td class="param-name">color</td>
                         <td>Color3</td>
-                        <td>Text color</td>
+                        <td>Text color.</td>
                     </tr>
                     <tr>
                         <td class="param-name">font</td>
                         <td>Enum.Font</td>
-                        <td>Font style</td>
+                        <td>Font style.</td>
                     </tr>
                 </table>
             </div>
@@ -411,7 +410,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.Choice</span>
                     <span class="api-sig">(prompt, choices)</span>
                 </div>
-                <p>Pwesents a wist of choices to the pwayew. Bwocks untiw sewection.</p>
+                <p>Presents a list of choices to the player. Blocks until selection.</p>
             </div>
 
             <div class="api-item">
@@ -419,7 +418,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.Parallel</span>
                     <span class="api-sig">(...)</span>
                 </div>
-                <p>Wuns multipwe actions at the same time! Multi-tasking! >w<< /p>
+                <p>Runs multiple actions at the same time.</p>
             </div>
 
             <div class="api-item">
@@ -427,7 +426,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.ShowObjective</span>
                     <span class="api-sig">(text)</span>
                 </div>
-                <p>Shows a missiown objective at the top of the scween.</p>
+                <p>Shows a mission objective at the top of the screen.</p>
             </div>
 
             <div class="api-item">
@@ -435,20 +434,20 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.Log</span>
                     <span class="api-sig">(message)</span>
                 </div>
-                <p>Pwints a message to the consowe (fow debugging).</p>
+                <p>Prints a message to the console for debugging.</p>
             </div>
         </section>
 
         <section id="actions-audio">
             <h2>Audio Actions 🎵</h2>
-            <p>Make some noise! uwu</p>
+            <p>Audio actions for the story.</p>
 
             <div class="api-item">
                 <div class="api-header">
                     <span class="api-name">Actions.PlaySound</span>
                     <span class="api-sig">(soundId, volume?, delay?)</span>
                 </div>
-                <p>Pways a sound effect just once.</p>
+                <p>Plays a sound effect once.</p>
                 <table class="param-table">
                     <tr>
                         <th>Parameter</th>
@@ -458,17 +457,17 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <tr>
                         <td class="param-name">soundId</td>
                         <td>string</td>
-                        <td>Roblox asset ID</td>
+                        <td>Roblox asset ID.</td>
                     </tr>
                     <tr>
                         <td class="param-name">volume</td>
                         <td>number</td>
-                        <td>(Optional) Volume, defaults to 1</td>
+                        <td>(Optional) Volume, defaults to 1.</td>
                     </tr>
                     <tr>
                         <td class="param-name">delay</td>
                         <td>number</td>
-                        <td>(Optional) Delay in seconds befowe playing</td>
+                        <td>(Optional) Delay in seconds before playing.</td>
                     </tr>
                 </table>
             </div>
@@ -478,7 +477,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.PlaySoundAndWait</span>
                     <span class="api-sig">(soundId, volume?)</span>
                 </div>
-                <p>Pways a sound and waits fow it to finish befowe continuing.</p>
+                <p>Plays a sound and waits for it to finish before continuing.</p>
             </div>
 
             <div class="api-item">
@@ -486,7 +485,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.PlayLoopingSound</span>
                     <span class="api-sig">(soundId, name, volume?)</span>
                 </div>
-                <p>Stawts a wooping sound that pewserves until stopped.</p>
+                <p>Starts a looping sound that continues until stopped.</p>
             </div>
 
             <div class="api-item">
@@ -494,7 +493,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.StopSound</span>
                     <span class="api-sig">(soundId, fadeDuration?)</span>
                 </div>
-                <p>Stops a specific sound ID, optionawwy fading it out.</p>
+                <p>Stops a specific sound ID, optionally fading it out.</p>
             </div>
 
             <div class="api-item">
@@ -502,7 +501,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.StopLoopingSound</span>
                     <span class="api-sig">(name, fadeDuration?)</span>
                 </div>
-                <p>Stops a named wooping sound, optionawwy fading it out smoothly uwu.</p>
+                <p>Stops a named looping sound, optionally fading it out smoothly.</p>
             </div>
 
             <div class="api-item">
@@ -510,7 +509,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.PlayMusic</span>
                     <span class="api-sig">(soundId, fadeTime?)</span>
                 </div>
-                <p>Pways backgwound music with cwoss-fading suppowt.</p>
+                <p>Plays background music with cross-fading support.</p>
             </div>
 
             <div class="api-item">
@@ -518,20 +517,20 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.StopMusic</span>
                     <span class="api-sig">(fadeTime?)</span>
                 </div>
-                <p>Fades out the cuwwent backgwound music.</p>
+                <p>Fades out the current background music.</p>
             </div>
         </section>
 
         <section id="actions-visuals">
             <h2>Visual Actions ✨</h2>
-            <p>Make it wook pwetty!</p>
+            <p>Visual effects for the story.</p>
 
             <div class="api-item">
                 <div class="api-header">
                     <span class="api-name">Actions.FadeOut</span>
                     <span class="api-sig">(duration)</span>
                 </div>
-                <p>Fades the scween to bwack.</p>
+                <p>Fades the screen to black.</p>
             </div>
 
             <div class="api-item">
@@ -539,7 +538,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.FadeIn</span>
                     <span class="api-sig">(duration)</span>
                 </div>
-                <p>Fades the scween fwom bwack to twanspawent.</p>
+                <p>Fades the screen from black to transparent.</p>
             </div>
 
             <div class="api-item">
@@ -547,7 +546,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.FlashScreen</span>
                     <span class="api-sig">(color, duration?)</span>
                 </div>
-                <p>Fwashes the scween a specific cowor (e.g., wed fow damage).</p>
+                <p>Flashes the screen a specific color (e.g., red for damage).</p>
             </div>
 
             <div class="api-item">
@@ -555,7 +554,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.SetBlur</span>
                     <span class="api-sig">(size, duration?)</span>
                 </div>
-                <p>Appwies a bwur effect to the Lighting sewvice.</p>
+                <p>Applies a blur effect to the Lighting service.</p>
                 <table class="param-table">
                     <tr>
                         <th>Parameter</th>
@@ -565,12 +564,12 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <tr>
                         <td class="param-name">size</td>
                         <td>number</td>
-                        <td>Bwur size intensity</td>
+                        <td>Blur size intensity.</td>
                     </tr>
                     <tr>
                         <td class="param-name">duration</td>
                         <td>number</td>
-                        <td>(Optional) Tween duration</td>
+                        <td>(Optional) Tween duration.</td>
                     </tr>
                 </table>
             </div>
@@ -580,7 +579,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.ScreenShake</span>
                     <span class="api-sig">(intensity, duration)</span>
                 </div>
-                <p>Shakes the camewa viowently! Eawthquake! >.<< /p>
+                <p>Shakes the camera violently.</p>
             </div>
 
             <div class="api-item">
@@ -588,7 +587,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.Blink</span>
                     <span class="api-sig">(holdDuration?)</span>
                 </div>
-                <p>Simuwates an eye bwink via fades. So wealistic!</p>
+                <p>Simulates an eye blink via fades.</p>
             </div>
 
             <div class="api-item">
@@ -596,7 +595,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.ShowUI / HideUI</span>
                     <span class="api-sig">(guiName)</span>
                 </div>
-                <p>Toggles visibiwity of PwayerGui ewements.</p>
+                <p>Toggles visibility of PlayerGui elements.</p>
             </div>
         </section>
 
@@ -608,7 +607,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.MoveCamera</span>
                     <span class="api-sig">(targetCFrame, duration?)</span>
                 </div>
-                <p>Smoothly moves the camewa to a new wocation.</p>
+                <p>Smoothly moves the camera to a new location.</p>
             </div>
 
             <div class="api-item">
@@ -616,7 +615,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.SetCamera</span>
                     <span class="api-sig">(targetCFrame)</span>
                 </div>
-                <p>Instantly snaps the camewa to a wocation.</p>
+                <p>Instantly snaps the camera to a location.</p>
             </div>
 
             <div class="api-item">
@@ -624,24 +623,24 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.CameraTilt</span>
                     <span class="api-sig">(angle, duration?)</span>
                 </div>
-                <p>Tiwwts the camewa. Gweat for dizzy effects >.<< /p>
-                        <table class="param-table">
-                            <tr>
-                                <th>Parameter</th>
-                                <th>Type</th>
-                                <th>Description</th>
-                            </tr>
-                            <tr>
-                                <td class="param-name">angle</td>
-                                <td>number</td>
-                                <td>Angle in degrees</td>
-                            </tr>
-                            <tr>
-                                <td class="param-name">duration</td>
-                                <td>number</td>
-                                <td>(Optional) Tween duration</td>
-                            </tr>
-                        </table>
+                <p>Tilts the camera.</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td class="param-name">angle</td>
+                        <td>number</td>
+                        <td>Angle in degrees.</td>
+                    </tr>
+                    <tr>
+                        <td class="param-name">duration</td>
+                        <td>number</td>
+                        <td>(Optional) Tween duration.</td>
+                    </tr>
+                </table>
             </div>
 
             <div class="api-item">
@@ -649,7 +648,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.FollowPart</span>
                     <span class="api-sig">(part, offset?)</span>
                 </div>
-                <p>Makes the camewa continuouswy fowwow a pawt's movement.</p>
+                <p>Makes the camera continuously follow a part's movement.</p>
             </div>
 
             <div class="api-item">
@@ -657,7 +656,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.StopFollowing</span>
                     <span class="api-sig">()</span>
                 </div>
-                <p>Stops the camewa fwom fowwowing a pawt.</p>
+                <p>Stops the camera from following a part.</p>
             </div>
 
             <div class="api-item">
@@ -665,7 +664,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.ResetCamera</span>
                     <span class="api-sig">()</span>
                 </div>
-                <p>Weturns contwol of the camewa to the pwayew.</p>
+                <p>Returns control of the camera to the player.</p>
             </div>
         </section>
 
@@ -677,7 +676,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.WaitForProximity</span>
                     <span class="api-sig">(targetPart, distance)</span>
                 </div>
-                <p>Waits untiw the pwayew is within distance of the tawget pawt.</p>
+                <p>Waits until the player is within distance of the target part.</p>
             </div>
 
             <div class="api-item">
@@ -685,7 +684,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.WaitForTrigger</span>
                     <span class="api-sig">(triggerPart)</span>
                 </div>
-                <p>Waits untiw the pwayew touches a specific pawt.</p>
+                <p>Waits until the player touches a specific part.</p>
             </div>
 
             <div class="api-item">
@@ -693,7 +692,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.TeleportPlayer</span>
                     <span class="api-sig">(position)</span>
                 </div>
-                <p>Instantly moves the pwayew charactew to a CFrame ow Vector3.</p>
+                <p>Instantly moves the player character to a CFrame or Vector3.</p>
             </div>
 
             <div class="api-item">
@@ -701,7 +700,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.LockPlayer / UnlockPlayer</span>
                     <span class="api-sig">()</span>
                 </div>
-                <p>Fweezes ow unfweezes pwayew movement.</p>
+                <p>Freezes or unfreezes player movement.</p>
             </div>
 
             <div class="api-item">
@@ -709,7 +708,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.HideCharacter / ShowCharacter</span>
                     <span class="api-sig">()</span>
                 </div>
-                <p>Makes the pwayew modew invisibwe/visibwe (usefuw fow cutscenes).</p>
+                <p>Makes the player model invisible or visible.</p>
             </div>
 
             <div class="api-item">
@@ -717,7 +716,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.WeldToObject</span>
                     <span class="api-sig">(object)</span>
                 </div>
-                <p>Welds the pwayew to a movin object (like a cah). uwu</p>
+                <p>Welds the player to a moving object.</p>
             </div>
 
             <div class="api-item">
@@ -725,7 +724,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.WaitForToolEquip</span>
                     <span class="api-sig">(toolName)</span>
                 </div>
-                <p>Waits fow the pwayew to equip a specific toow.</p>
+                <p>Waits for the player to equip a specific tool.</p>
             </div>
 
             <div class="api-item">
@@ -733,7 +732,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.WaitForToolUse</span>
                     <span class="api-sig">(toolName)</span>
                 </div>
-                <p>Waits fow the pwayew to CWICK/ACTIVATE a toow.</p>
+                <p>Waits for the player to click or activate a tool.</p>
             </div>
         </section>
 
@@ -745,7 +744,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.PlayAnimation</span>
                     <span class="api-sig">(target, animationId, waitForComplete?)</span>
                 </div>
-                <p>Pways an animation on a Humanoid/Model.</p>
+                <p>Plays an animation on a Humanoid or Model.</p>
             </div>
 
             <div class="api-item">
@@ -753,7 +752,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.PlayCutsceneAnimation</span>
                     <span class="api-sig">(animationId)</span>
                 </div>
-                <p>Pways an animation on the WOCAL PWAYER and waits fow it to finish.</p>
+                <p>Plays an animation on the local player and waits for it to finish.</p>
             </div>
         </section>
 
@@ -765,7 +764,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.TweenModel</span>
                     <span class="api-sig">(model, targetPart, duration, easingStyle?)</span>
                 </div>
-                <p>Moves a whowe modew to a tawget pawt's position.</p>
+                <p>Moves a whole model to a target part's position.</p>
             </div>
 
             <div class="api-item">
@@ -773,7 +772,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.TweenPart</span>
                     <span class="api-sig">(part, targetPart, duration, easingStyle?)</span>
                 </div>
-                <p>Moves a singwe pawt to a tawget position.</p>
+                <p>Moves a single part to a target position.</p>
             </div>
 
             <div class="api-item">
@@ -781,7 +780,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.TweenPartThroughWaypoints</span>
                     <span class="api-sig">(part, waypoints)</span>
                 </div>
-                <p>Moves a pawt thwough a wist of waypoints without stopping! Zoom zoom! 🏎️</p>
+                <p>Moves a part through a list of waypoints without stopping.</p>
                 <div class="code-example"
                     style="margin-top:0.5rem; background: rgba(0,0,0,0.2); padding: 0.5rem; border-radius: 4px; font-family: monospace; font-size: 0.8rem;">
                     waypoints = { {target=part1, duration=5}, {target=part2, duration=2} }
@@ -793,7 +792,7 @@ Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
                     <span class="api-name">Actions.StartBackgroundTween</span>
                     <span class="api-sig">(part, waypoints)</span>
                 </div>
-                <p>Same as above, but wuns in the backgwound so othew actions can happen simuwtaneouswy!</p>
+                <p>Runs the tween in the background so other actions can continue.</p>
             </div>
         </section>
 
