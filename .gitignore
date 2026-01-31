@@ -1,0 +1,20 @@
+# Project place file
+/robloxgame1.rbxlx
+/robloxgame1.rbxl
+/forgotten.rbxlx
+/forgotten.rbxl
+
+# Documentation
+/docs/MAINMENU_FIX.md
+/docs/PLAY_BUTTON_FLOW.md
+/docs/MAINMENU_CUTSCENE_FIX.md
+/docs/QUICKSTART.md
+/docs/SCENE_TRANSITION_PATTERN.md
+/docs/SCENE_TRIGGERS.md
+/docs/TRIGGERING_CUTSCENES.md
+
+# Roblox Studio lock files
+/*.rbxlx.lock
+/*.rbxl.lock
+
+sourcemap.json

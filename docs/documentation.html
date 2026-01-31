@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Engine Docs UwU</title>
+    <style>
+        :root {
+            --bg-primary: #0f1115;
+            --bg-secondary: #1a1d24;
+            --text-primary: #e6e6e6;
+            --text-secondary: #a0a0a0;
+            --accent: #ff79c6;
+            --accent-dim: #bd5c94;
+            --border: #2d313a;
+            --code-bg: #282c34;
+            --card-bg: #1e2128;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border);
+            padding: 2rem 1.5rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .nav-group {
+            margin-bottom: 2rem;
+        }
+
+        .nav-label {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .nav-link {
+            display: block;
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            margin-bottom: 0.25rem;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 121, 198, 0.1);
+            color: var(--accent);
+        }
+
+        .nav-link.sub {
+            padding-left: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            margin-left: 280px;
+            padding: 4rem 6rem;
+            max-width: 1200px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            color: var(--accent);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-left: 0.5rem;
+        }
+
+        .badge.uwu {
+            background-color: rgba(255, 121, 198, 0.2);
+            color: var(--accent);
+        }
+
+        /* Code Blocks */
+        pre {
+            background-color: var(--code-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: #d19a66;
+        }
+
+        p code {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            color: var(--accent);
+        }
+
+        /* API List */
+        .api-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .api-header {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 0.75rem;
+        }
+
+        .api-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .api-sig {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+
+        .param-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .param-table th,
+        .param-table td {
+            text-align: left;
+            padding: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .param-table th {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .param-table td {
+            color: var(--text-primary);
+        }
+
+        .param-name {
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="sidebar">
+        <a href="#" class="logo">StoryEngine UwU</a>
+
+        <div class="nav-group">
+            <div class="nav-label">Intwoduwuction</div>
+            <a href="#welcome" class="nav-link">Welcwome</a>
+            <a href="#quickstart" class="nav-link">Quick Stawt >///<< /a>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-label">Strwucture</div>
+            <a href="#chapter" class="nav-link">Chapter Moduwule</a>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-label">Action Libwary</div>
+            <a href="#actions-core" class="nav-link">Cowe Actions</a>
+            <a href="#actions-audio" class="nav-link">Audio UwU</a>
+            <a href="#actions-visuals" class="nav-link">Visuawls</a>
+            <a href="#actions-gameplay" class="nav-link">Gameplay</a>
+            <a href="#actions-animation" class="nav-link">Animations</a>
+            <a href="#actions-camera" class="nav-link">Camewa</a>
+            <a href="#actions-tweening" class="nav-link">Tweening</a>
+        </div>
+    </nav>
+
+    <main class="main">
+        <section id="welcome">
+            <h1>Story Engine Documentation <span class="badge uwu">v1.0.0</span></h1>
+            <p>
+                Hewwo! Welcwome to the officiwal documentation for the Story Engine.
+                This fwamework is designed to make creating cutscenes and linear stories supew easy and powewful! uwu
+            </p>
+            <p>
+                Pwease wead through the sections to undewstand how to use the Directow and Actions! >w< </p>
+                    <p>
+                        All actions support a built-in SKIP feature (press 'P') fow easy debugging!
+                    </p>
+        </section>
+
+        <section id="quickstart">
+            <h2>Quick Start >///<< /h2>
+                    <p>Get up and wunning fastew than a heawtbeat! To start using the Story Engine, you'll need to
+                        define a Chaptew and some Scenes.</p>
+
+                    <h3>1. Cweate a Chaptew</h3>
+                    <pre><code class="language-lua">local Chapter = require(game.ReplicatedStorage.Story.Chapter)
+local Actions = require(game.ReplicatedStorage.Story.Actions)
+
+local MyChapter = Chapter.new({
+    id = "chapter1",
+    name = "The Beginning",
+    startScene = "intro",
+    scenes = {
+        -- Defined below
+    }
+})</code></pre>
+
+                    <h3>2. Define a Scene</h3>
+                    <pre><code class="language-lua">Chapter.scene("intro", "Intro Sequence", {
+    Actions.FadeOut(0),
+    Actions.Wait(1),
+    Actions.PlaySound("rbxassetid://123456"),
+    Actions.FadeIn(2),
+    Actions.Dialogue("Welcome to the game!", 3),
+    Actions.WalkTo(workspace.TargetPart)
+})</code></pre>
+
+                    <h3>3. Pway it!</h3>
+                    <pre><code class="language-lua">local Director = require(game.ReplicatedStorage.Story.Director)
+Director:PlaySequence(MyChapter.scenes[1].actions)</code></pre>
+        </section>
+
+        <section id="chapter">
+            <h2>Chapter Module</h2>
+            <p>The <code>Chapter</code> moduwule hewps you owganize youw stowies into manageabwe chunks.</p>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Chapter.new</span>
+                    <span class="api-sig">(definition)</span>
+                </div>
+                <p>Registers and cweates a new Chaptew object.</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td class="param-name">definition</td>
+                        <td>ChapterDefinition</td>
+                        <td>Table containing id, name, startScene, and scenes list</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Chapter.scene</span>
+                    <span class="api-sig">(id, name, actions)</span>
+                </div>
+                <p>Hewper function to cweate a scene definition tabwe.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Chapter.getScene</span>
+                    <span class="api-sig">(chapterId, sceneId)</span>
+                </div>
+                <p>Wetwieves a specific scene fwom a registewed chaptew.</p>
+            </div>
+        </section>
+
+        <section id="actions-core">
+            <h2>Core Actions</h2>
+            <p>Fundamentaw bwilding bwocks fow youw stowy.</p>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.Wait</span>
+                    <span class="api-sig">(seconds)</span>
+                </div>
+                <p>Pauses execution fow a set time (skippable).</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.Dialogue</span>
+                    <span class="api-sig">(text, duration?, color?, font?, textSize?)</span>
+                </div>
+                <p>Dispways text on scween with a typewwiter effect.</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td class="param-name">text</td>
+                        <td>string</td>
+                        <td>The text to dispway uwu</td>
+                    </tr>
+                    <tr>
+                        <td class="param-name">duration</td>
+                        <td>number</td>
+                        <td>Time to stay on screen after typing</td>
+                    </tr>
+                    <tr>
+                        <td class="param-name">color</td>
+                        <td>Color3</td>
+                        <td>Text color</td>
+                    </tr>
+                    <tr>
+                        <td class="param-name">font</td>
+                        <td>Enum.Font</td>
+                        <td>Font style</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.Choice</span>
+                    <span class="api-sig">(prompt, choices)</span>
+                </div>
+                <p>Pwesents a wist of choices to the pwayew. Bwocks untiw sewection.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.Parallel</span>
+                    <span class="api-sig">(...)</span>
+                </div>
+                <p>Wuns multipwe actions at the same time! Multi-tasking! >w<< /p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.ShowObjective</span>
+                    <span class="api-sig">(text)</span>
+                </div>
+                <p>Shows a missiown objective at the top of the scween.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.Log</span>
+                    <span class="api-sig">(message)</span>
+                </div>
+                <p>Pwints a message to the consowe (fow debugging).</p>
+            </div>
+        </section>
+
+        <section id="actions-audio">
+            <h2>Audio Actions 🎵</h2>
+            <p>Make some noise! uwu</p>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.PlaySound</span>
+                    <span class="api-sig">(soundId, volume?, delay?)</span>
+                </div>
+                <p>Pways a sound effect just once.</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td class="param-name">soundId</td>
+                        <td>string</td>
+                        <td>Roblox asset ID</td>
+                    </tr>
+                    <tr>
+                        <td class="param-name">volume</td>
+                        <td>number</td>
+                        <td>(Optional) Volume, defaults to 1</td>
+                    </tr>
+                    <tr>
+                        <td class="param-name">delay</td>
+                        <td>number</td>
+                        <td>(Optional) Delay in seconds befowe playing</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.PlaySoundAndWait</span>
+                    <span class="api-sig">(soundId, volume?)</span>
+                </div>
+                <p>Pways a sound and waits fow it to finish befowe continuing.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.PlayLoopingSound</span>
+                    <span class="api-sig">(soundId, name, volume?)</span>
+                </div>
+                <p>Stawts a wooping sound that pewserves until stopped.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.StopSound</span>
+                    <span class="api-sig">(soundId, fadeDuration?)</span>
+                </div>
+                <p>Stops a specific sound ID, optionawwy fading it out.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.StopLoopingSound</span>
+                    <span class="api-sig">(name, fadeDuration?)</span>
+                </div>
+                <p>Stops a named wooping sound, optionawwy fading it out smoothly uwu.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.PlayMusic</span>
+                    <span class="api-sig">(soundId, fadeTime?)</span>
+                </div>
+                <p>Pways backgwound music with cwoss-fading suppowt.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.StopMusic</span>
+                    <span class="api-sig">(fadeTime?)</span>
+                </div>
+                <p>Fades out the cuwwent backgwound music.</p>
+            </div>
+        </section>
+
+        <section id="actions-visuals">
+            <h2>Visual Actions ✨</h2>
+            <p>Make it wook pwetty!</p>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.FadeOut</span>
+                    <span class="api-sig">(duration)</span>
+                </div>
+                <p>Fades the scween to bwack.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.FadeIn</span>
+                    <span class="api-sig">(duration)</span>
+                </div>
+                <p>Fades the scween fwom bwack to twanspawent.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.FlashScreen</span>
+                    <span class="api-sig">(color, duration?)</span>
+                </div>
+                <p>Fwashes the scween a specific cowor (e.g., wed fow damage).</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.SetBlur</span>
+                    <span class="api-sig">(size, duration?)</span>
+                </div>
+                <p>Appwies a bwur effect to the Lighting sewvice.</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td class="param-name">size</td>
+                        <td>number</td>
+                        <td>Bwur size intensity</td>
+                    </tr>
+                    <tr>
+                        <td class="param-name">duration</td>
+                        <td>number</td>
+                        <td>(Optional) Tween duration</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.ScreenShake</span>
+                    <span class="api-sig">(intensity, duration)</span>
+                </div>
+                <p>Shakes the camewa viowently! Eawthquake! >.<< /p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.Blink</span>
+                    <span class="api-sig">(holdDuration?)</span>
+                </div>
+                <p>Simuwates an eye bwink via fades. So wealistic!</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.ShowUI / HideUI</span>
+                    <span class="api-sig">(guiName)</span>
+                </div>
+                <p>Toggles visibiwity of PwayerGui ewements.</p>
+            </div>
+        </section>
+
+        <section id="actions-camera">
+            <h2>Camera Actions 📷</h2>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.MoveCamera</span>
+                    <span class="api-sig">(targetCFrame, duration?)</span>
+                </div>
+                <p>Smoothly moves the camewa to a new wocation.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.SetCamera</span>
+                    <span class="api-sig">(targetCFrame)</span>
+                </div>
+                <p>Instantly snaps the camewa to a wocation.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.CameraTilt</span>
+                    <span class="api-sig">(angle, duration?)</span>
+                </div>
+                <p>Tiwwts the camewa. Gweat for dizzy effects >.<< /p>
+                        <table class="param-table">
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td class="param-name">angle</td>
+                                <td>number</td>
+                                <td>Angle in degrees</td>
+                            </tr>
+                            <tr>
+                                <td class="param-name">duration</td>
+                                <td>number</td>
+                                <td>(Optional) Tween duration</td>
+                            </tr>
+                        </table>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.FollowPart</span>
+                    <span class="api-sig">(part, offset?)</span>
+                </div>
+                <p>Makes the camewa continuouswy fowwow a pawt's movement.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.StopFollowing</span>
+                    <span class="api-sig">()</span>
+                </div>
+                <p>Stops the camewa fwom fowwowing a pawt.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.ResetCamera</span>
+                    <span class="api-sig">()</span>
+                </div>
+                <p>Weturns contwol of the camewa to the pwayew.</p>
+            </div>
+        </section>
+
+        <section id="actions-gameplay">
+            <h2>Gameplay Actions 🎮</h2>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.WaitForProximity</span>
+                    <span class="api-sig">(targetPart, distance)</span>
+                </div>
+                <p>Waits untiw the pwayew is within distance of the tawget pawt.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.WaitForTrigger</span>
+                    <span class="api-sig">(triggerPart)</span>
+                </div>
+                <p>Waits untiw the pwayew touches a specific pawt.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.TeleportPlayer</span>
+                    <span class="api-sig">(position)</span>
+                </div>
+                <p>Instantly moves the pwayew charactew to a CFrame ow Vector3.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.LockPlayer / UnlockPlayer</span>
+                    <span class="api-sig">()</span>
+                </div>
+                <p>Fweezes ow unfweezes pwayew movement.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.HideCharacter / ShowCharacter</span>
+                    <span class="api-sig">()</span>
+                </div>
+                <p>Makes the pwayew modew invisibwe/visibwe (usefuw fow cutscenes).</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.WeldToObject</span>
+                    <span class="api-sig">(object)</span>
+                </div>
+                <p>Welds the pwayew to a movin object (like a cah). uwu</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.WaitForToolEquip</span>
+                    <span class="api-sig">(toolName)</span>
+                </div>
+                <p>Waits fow the pwayew to equip a specific toow.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.WaitForToolUse</span>
+                    <span class="api-sig">(toolName)</span>
+                </div>
+                <p>Waits fow the pwayew to CWICK/ACTIVATE a toow.</p>
+            </div>
+        </section>
+
+        <section id="actions-animation">
+            <h2>Animation Actions 💃</h2>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.PlayAnimation</span>
+                    <span class="api-sig">(target, animationId, waitForComplete?)</span>
+                </div>
+                <p>Pways an animation on a Humanoid/Model.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.PlayCutsceneAnimation</span>
+                    <span class="api-sig">(animationId)</span>
+                </div>
+                <p>Pways an animation on the WOCAL PWAYER and waits fow it to finish.</p>
+            </div>
+        </section>
+
+        <section id="actions-tweening">
+            <h2>Tweening Actions 🚗</h2>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.TweenModel</span>
+                    <span class="api-sig">(model, targetPart, duration, easingStyle?)</span>
+                </div>
+                <p>Moves a whowe modew to a tawget pawt's position.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.TweenPart</span>
+                    <span class="api-sig">(part, targetPart, duration, easingStyle?)</span>
+                </div>
+                <p>Moves a singwe pawt to a tawget position.</p>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.TweenPartThroughWaypoints</span>
+                    <span class="api-sig">(part, waypoints)</span>
+                </div>
+                <p>Moves a pawt thwough a wist of waypoints without stopping! Zoom zoom! 🏎️</p>
+                <div class="code-example"
+                    style="margin-top:0.5rem; background: rgba(0,0,0,0.2); padding: 0.5rem; border-radius: 4px; font-family: monospace; font-size: 0.8rem;">
+                    waypoints = { {target=part1, duration=5}, {target=part2, duration=2} }
+                </div>
+            </div>
+
+            <div class="api-item">
+                <div class="api-header">
+                    <span class="api-name">Actions.StartBackgroundTween</span>
+                    <span class="api-sig">(part, waypoints)</span>
+                </div>
+                <p>Same as above, but wuns in the backgwound so othew actions can happen simuwtaneouswy!</p>
+            </div>
+        </section>
+
+        <footer
+            style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--text-secondary); text-align: center;">
+            <p>Made with wuv by Antigwavity & User uwu</p>
+        </footer>
+    </main>
+</body>
+
+</html>
